@@ -3,7 +3,9 @@
 <% @bikes.each do |b|%>
 	<ul>
 		<li>Bike ID: <%=b.id %> Bike Color: <%= b.color%></li>
-		<%= link_to 'delete bike', user_bike_path(@user.id,b.id) , method: 'DELETE' %>
+		<% if current_user.id == @user.id%>
+			<%= link_to 'delete bike', user_bike_path(@user.id,b.id) , method: 'DELETE' %>
+		<% end %>
 	</ul>
 <% end %>
 
