@@ -1,5 +1,7 @@
 class BikesController < ApplicationController
 
+  before_action :authenticate_member!
+  
   def create
     bike = Bike.new(bike_params)
 
