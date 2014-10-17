@@ -4,9 +4,9 @@ class BikesController < ApplicationController
 
   def create
     bike = Bike.new(bike_params)
-
+    bike.user_id = current_user.id
     if (bike.save)
-      redirect_to root_path
+      redirect_to user_path(bike.user_id)
     else
       render "users/show"
     end
@@ -14,10 +14,13 @@ class BikesController < ApplicationController
   end
 
   def destroy
-    #Bike params what
     bike = Bike.find(params[:id])
-    bike.destroy
-    redirect_to user_path(bike.user_id)
+    if (bike.user_id == current_user.id)
+      bike.destroy
+      redirect_to user_path(bike.user_id)
+    else
+      redirect_to users_path
+    end
   end
 
   def bike_params()

@@ -8,6 +8,19 @@
 </head>
 <body>
 
+	<!-- Login / Signout Things and nav -->
+	<% if current_user %>
+	  Welcome to VideoCloset! You are signed in as <%= current_user.email %>.
+	  <%= link_to 'sign out', destroy_user_session_path, :method => :delete %>
+	  <br>
+  	<%= link_to 'Users', users_path, :method => :get %>
+	<%= link_to 'Your bikes', user_path(current_user.id), :method => :get %>
+	<% else %>
+	  Please <%= link_to 'sign in', new_user_session_path %> first.
+	<% end %>
+	<!-- Login / Signout Things and nav  -->
+	<br><br>
+
 <%= yield %>
 
 </body>
