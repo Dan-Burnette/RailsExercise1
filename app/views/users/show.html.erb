@@ -7,9 +7,11 @@
 	</ul>
 <% end %>
 
-<%= form_tag(user_bikes_path(@user.id), method: 'POST') do %>
-	<label>Enter the color of your new bike</label>
-	<input type="text" name='bike[color]' value='<%=@bike.color%>'> 
-	<input type="hidden" name='bike[user_id]' value='<%=@user.id%>'> 
-	<input type="submit" value="submit">
-<%end%>
+<%if current_user.id == @user.id %>
+	<%= form_tag(user_bikes_path(@user.id), method: 'POST') do %>
+		<label>Enter the color of your new bike</label>
+		<input type="text" name='bike[color]' value='<%=@bike.color%>'> 
+		<input type="hidden" name='bike[user_id]' value='<%=@user.id%>'> 
+		<input type="submit" value="submit">
+	<%end%>
+<% end %>

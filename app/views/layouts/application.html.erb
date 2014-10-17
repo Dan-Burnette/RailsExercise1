@@ -10,7 +10,7 @@
 
 	<!-- Login / Signout Things and nav -->
 	<% if current_user %>
-	  Welcome to VideoCloset! You are signed in as <%= current_user.email %>.
+	  Welcome to BikeManager! You are signed in as <%= current_user.email %>.
 	  <%= link_to 'sign out', destroy_user_session_path, :method => :delete %>
 	  <br>
   	<%= link_to 'Users', users_path, :method => :get %>
